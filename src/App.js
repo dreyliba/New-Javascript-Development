@@ -1,6 +1,7 @@
 import "./App.scss";
 import "antd/dist/antd.css";
 import { Button } from "antd";
+import GoogleMaps from "./GoogleMap";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Button type="dashed">Link Button</Button>
         </div>
       </div>
+      <GoogleMaps />
     </div>
   );
 }
