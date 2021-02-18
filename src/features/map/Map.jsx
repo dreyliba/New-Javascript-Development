@@ -10,7 +10,6 @@ class Map extends Component {
             <div className='map-component'>
                 <GoogleMap  google={this.props.google} onGoogleApi initialCenter={currentPosition}>
                     <Marker />
-                    <GoogleMap />
                 </GoogleMap>
             </div>
         );

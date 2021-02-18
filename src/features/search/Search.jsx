@@ -18,7 +18,7 @@ class Search extends Component {
                             placeholder='Search for (e.g Hardware)'
                         />
                     </div>
-                    <div className='searcg-option'>
+                    <div className='search-option'>
                         <Input.Group compact>
                         <Input 
                             name='distance'
