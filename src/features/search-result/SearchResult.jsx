@@ -5,9 +5,7 @@ class SearchResult extends Component {
     render() {
         return (
             <div className='search-result-component'>
-                <SearchResultItem />
-                <SearchResultItem />
-                <SearchResultItem />
+                
                 <SearchResultItem />
             </div>
         );
