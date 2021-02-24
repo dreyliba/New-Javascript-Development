@@ -12,11 +12,16 @@ import './main.scss';
 const { Content } = Layout;
 
 class Main extends Component {
-        state = { 
+        state = {
             stores: [],
             currentPosition: null,
             query: '',
-            distance: '1',          
+            distance: '1',
+            searchQuery: {
+                distance: 1,
+                query: '',
+                stores: [],
+            },
         };
 
         componentDidMount() {
@@ -45,10 +50,30 @@ class Main extends Component {
             const stores = data.reduce((mappedStores, store) => {
                 const { lat, lng } = this.state.currentPosition;
                 const distance = haversineInKM(lat, lng, store.latitude, store.longitude);
-                debugger;
                 return [ ...mappedStores, { ...store, distance }];
             }, []);
             return stores;
+        }
+
+        onSearch() {
+            const { distance, query, stores } = this.state;
+            const filteredStores = this.filterStores({ distance, query, stores });
+            debugger;
+            const searchQuery = { distance, query, stores: filteredStores };
+            this.setState({ searchQuery });
+            
+        }
+
+        filterStores({ distance, query, stores }) {
+            const filteredStores = stores.filter((store) => {
+                const isStoreInRange = store.distance <=  parseInt(distance);
+                if (!query || !isStoreInRange) return isStoreInRange;
+                const isStoreQueried = 
+                    store.name.toLowerCase().includes(query.toLowerCase()) || 
+                    store.tags.toLowerCase().includes(query.toLowerCase());
+                return isStoreInRange && isStoreQueried;
+            });
+            return filteredStores;
         }
 
 
@@ -61,9 +86,11 @@ class Main extends Component {
                         query={this.state.query} 
                         distance={this.props.distance}
                         onChange={(event) => this.onInputChange(event)} 
+                        onSubmit={() => this.onSearch()}
                     />
                     <div className='search-content'>
-                        <Map currentPosition={this.state.currentPosition} 
+                        <Map 
+                            currentPosition={this.state.currentPosition} 
                              distance={this.state.distance}
                         />
                         

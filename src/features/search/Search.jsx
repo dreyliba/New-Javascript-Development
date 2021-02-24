@@ -8,6 +8,7 @@ const { Option } = Select;
 class Search extends Component {
     onFormSubmit(event) {
         event.preventDefault();
+        this.props.onSubmit();
     }
     render() {
         return (
