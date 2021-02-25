@@ -58,7 +58,6 @@
             onSearch() {
                 const { distance, query, stores } = this.state;
                 const filteredStores = this.filterStores({ distance, query, stores });;
-                debugger;
                 const searchQuery = { distance, query, stores: filteredStores };
                 this.setState({ searchQuery });
                 
@@ -92,7 +91,7 @@
                             <Map 
                                 currentPosition={this.state.currentPosition} 
                                 distance={this.state.distance}
-                                results={this.state.searchQuery.stores}
+                                stores={this.state.searchQuery.stores}
                             />
                             
                             <SearchResult />
