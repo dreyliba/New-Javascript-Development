@@ -94,7 +94,9 @@
                                 stores={this.state.searchQuery.stores}
                             />
                             
-                            <SearchResult />
+                            <SearchResult 
+                                stores={this.state.searchQuery.stores}
+                            />
                         </div>
                     </Content>
                 </div>
